@@ -1,3 +1,11 @@
-const num: number = 5;
+export class Node {
+    data: Nullable<number>;
+    left: Nullable<Node>;
+    right: Nullable<Node>;
 
-console.log(num);
+    constructor(data: Nullable<number>, left: Nullable<Node> = null, right: Nullable<Node> = null) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+}
