@@ -51,6 +51,23 @@ it('should find the max value', () => {
     expect(bst.max()).toBe(50);
 });
 
+it('should find the max value in the specified root', () => {
+    const bst = new BST();
+
+    bst.add(50);
+    bst.add(40);
+    bst.add(42);
+    bst.add(48);
+    bst.add(30);
+    bst.add(20);
+    bst.add(43);
+    bst.add(44);
+
+    const root = bst.find(42);
+
+    expect(bst.max(root)).toBe(48);
+});
+
 it('should find the min value', () => {
     const bst = new BST();
 
@@ -61,6 +78,22 @@ it('should find the min value', () => {
     bst.add(40);
 
     expect(bst.min()).toBe(1);
+});
+
+it('should find the min value in the specified root', () => {
+    const bst = new BST();
+
+    bst.add(10);
+    bst.add(15);
+    bst.add(14);
+    bst.add(11);
+    bst.add(20);
+    bst.add(25);
+    bst.add(30);
+
+    const root = bst.find(15);
+
+    expect(bst.min(root)).toBe(11);
 });
 
 it('should find a node', () => {

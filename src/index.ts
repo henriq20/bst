@@ -64,7 +64,7 @@ export class BST {
         return false;
     }
 
-    max(root?: Node): number {
+    max(root: Nullable<Node> = null): number {
         let current = root ?? this.root;
 
         while (current?.right) {
@@ -74,7 +74,7 @@ export class BST {
         return current?.data ?? 0;
     }
 
-    min(root?: Node): number {
+    min(root: Nullable<Node> = null): number {
         let current = root ?? this.root;
 
         while (current?.left) {
