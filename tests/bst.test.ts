@@ -105,3 +105,47 @@ it('should tell whether a node is a leaf', () => {
     expect(bst.isLeaf(1)).toBe(true);
     expect(bst.isLeaf(14)).toBe(true);
 });
+
+it('should remove a node from the tree when the node is a leaf', () => {
+    const bst = new BST();
+
+    bst.add(8);
+    bst.add(3);
+    bst.add(1);
+
+    bst.remove(1);
+
+    expect(bst.has(1)).toBe(false);
+});
+
+it('should remove a node from the tree when the node has one child', () => {
+    const bst = new BST();
+
+    bst.add(50);
+    bst.add(20);
+    bst.add(40);
+    bst.add(60);
+    bst.add(100);
+
+    bst.remove(20);
+
+    expect(bst.has(20)).toBe(false);
+    expect(bst.root?.left?.data).toBe(40);
+});
+
+it('should remove a node from the tree when the node has two children', () => {
+    const bst = new BST();
+
+    bst.add(50);
+    bst.add(40);
+    bst.add(70);
+    bst.add(60);
+    bst.add(80);
+
+    bst.remove(50);
+
+    expect(bst.has(50)).toBe(false);
+    expect(bst.root?.data).toBe(60);
+    expect(bst.root?.left?.data).toBe(40);
+    expect(bst.root?.right?.data).toBe(70);
+});
