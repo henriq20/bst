@@ -79,4 +79,18 @@ export class BST {
 
         return current?.data;
     }
+
+    find(value: number): Nullable<Node> {
+        let current = this.root;
+
+        while (current?.data !== value) {
+            if (current === null) {
+                return null;
+            }
+
+            current = value > current.data ? current.right : current.left;
+        }
+
+        return current;
+    }
 }

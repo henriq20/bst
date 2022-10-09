@@ -1,4 +1,4 @@
-import { BST } from '../src/index';
+import { BST, Node } from '../src/index';
 
 it('should define the first added value as the root', () => {
     const bst = new BST();
@@ -61,4 +61,18 @@ it('should find the min value', () => {
     bst.add(40);
 
     expect(bst.min()).toBe(1);
+});
+
+it('should find a node', () => {
+    const bst = new BST();
+
+    bst.add(10);
+    bst.add(1);
+    bst.add(2);
+    bst.add(50);
+    bst.add(40);
+
+    expect(bst.find(50)?.data).toBe(50);
+    expect(bst.find(40)?.data).toBe(40);
+    expect(bst.find(1)?.data).toBe(1);
 });
