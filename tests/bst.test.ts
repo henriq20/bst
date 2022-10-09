@@ -87,3 +87,21 @@ it('should increase the size as nodes are added to the tree', () => {
 
     expect(bst.size).toBe(4);
 });
+
+it('should tell whether a node is a leaf', () => {
+    const bst = new BST();
+
+    bst.add(8);
+    bst.add(3);
+    bst.add(1);
+    bst.add(10);
+    bst.add(15);
+    bst.add(14);
+
+    expect(bst.isLeaf(8)).toBe(false);
+    expect(bst.isLeaf(3)).toBe(false);
+    expect(bst.isLeaf(10)).toBe(false);
+
+    expect(bst.isLeaf(1)).toBe(true);
+    expect(bst.isLeaf(14)).toBe(true);
+});

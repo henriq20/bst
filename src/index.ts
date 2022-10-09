@@ -51,7 +51,7 @@ export class BST {
         return search(node);
     }
 
-    has(value: number) {
+    has(value: number): boolean {
         let current = this.root;
 
         while(current) {
@@ -65,24 +65,24 @@ export class BST {
         return false;
     }
 
-    max() {
+    max(): number {
         let current = this.root;
 
         while (current?.right) {
             current = current.right;
         }
 
-        return current?.data;
+        return current?.data ?? 0;
     }
 
-    min() {
+    min(): number {
         let current = this.root;
 
         while (current?.left) {
             current = current.left;
         }
 
-        return current?.data;
+        return current?.data ?? 0;
     }
 
     find(value: number): Nullable<Node> {
@@ -97,5 +97,11 @@ export class BST {
         }
 
         return current;
+    }
+
+    isLeaf(value: number): boolean {
+        const node = this.find(value);
+
+        return !node?.right && !node?.left;
     }
 }
