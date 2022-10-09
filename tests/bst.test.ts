@@ -38,3 +38,27 @@ it('should check whether a node is present in the tree', () => {
     expect(bst.has(2)).toBe(false);
     expect(bst.has(8)).toBe(false);
 });
+
+it('should find the max value', () => {
+    const bst = new BST();
+
+    bst.add(10);
+    bst.add(1);
+    bst.add(2);
+    bst.add(50);
+    bst.add(40);
+
+    expect(bst.max()).toBe(50);
+});
+
+it('should find the min value', () => {
+    const bst = new BST();
+
+    bst.add(10);
+    bst.add(1);
+    bst.add(2);
+    bst.add(50);
+    bst.add(40);
+
+    expect(bst.min()).toBe(1);
+});

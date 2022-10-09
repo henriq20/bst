@@ -59,4 +59,24 @@ export class BST {
 
         return false;
     }
+
+    max() {
+        let current = this.root;
+
+        while (current?.right) {
+            current = current.right;
+        }
+
+        return current?.data;
+    }
+
+    min() {
+        let current = this.root;
+
+        while (current?.left) {
+            current = current.left;
+        }
+
+        return current?.data;
+    }
 }
