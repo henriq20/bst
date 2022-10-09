@@ -9,3 +9,18 @@ export class Node {
         this.right = right;
     }
 }
+
+export class BST {
+    root: Nullable<Node>;
+
+    constructor() {
+        this.root = null;
+    }
+
+    add(value: number) {
+        if (!this.root) {
+            this.root = new Node(value);
+            return this.root;
+        }
+    }
+}
