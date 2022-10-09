@@ -50,8 +50,8 @@ export class BST {
         return search(node);
     }
 
-    has(value: number): boolean {
-        let current = this.root;
+    has(value: number, root: Nullable<Node> = null): boolean {
+        let current = root ?? this.root;
 
         while(current) {
             if (value === current.data) {

@@ -39,6 +39,23 @@ it('should check whether a node is present in the tree', () => {
     expect(bst.has(8)).toBe(false);
 });
 
+it('should check whether a node is present in a specified root', () => {
+    const bst = new BST();
+
+    bst.add(50);
+    bst.add(40);
+    bst.add(30);
+    bst.add(10);
+    bst.add(15);
+    bst.add(5);
+
+    const root = bst.find(10);
+
+    expect(bst.has(50, root)).toBe(false);
+    expect(bst.has(30, root)).toBe(false);
+    expect(bst.has(15, root)).toBe(true);
+});
+
 it('should find the max value', () => {
     const bst = new BST();
 
