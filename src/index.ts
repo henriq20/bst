@@ -122,15 +122,28 @@ export class BST {
             return root;
         }
 
-        if (root.left === null) {
+        if (!root.left) {
             return root.right;
         }
-        if (root.right === null) {
+        if (!root.right) {
             return root.left;
         }
 
-        root.data = this.min(root.right);
-        root.right = this._remove(root.right, root.data);
+        let successorParent = root;
+        let successor = root.right;
+
+        while (successor.left) {
+            successorParent = successor;
+            successor = successor.left;
+        }
+
+        if (successorParent !== root) {
+            successorParent.left = successor.right;
+        } else {
+            successorParent.right = successor.right;
+        }
+
+        root.data = successor.data;
 
         return root;
     }

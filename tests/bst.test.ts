@@ -1,4 +1,4 @@
-import { BST, Node } from '../src/index';
+import { BST } from '../src/index';
 
 it('should define the first added value as the root', () => {
     const bst = new BST();
