@@ -105,7 +105,12 @@ export class BST {
     }
 
     remove(value: number) {
+        const root = JSON.stringify(this.root);
         this.root = this._remove(this.root, value);
+
+        if (root !== JSON.stringify(this.root)) {
+            this.size--;
+        }
     }
 
     _remove(root: Nullable<Node>, value: number): Nullable<Node> {

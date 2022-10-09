@@ -138,6 +138,27 @@ it('should increase the size as nodes are added to the tree', () => {
     expect(bst.size).toBe(4);
 });
 
+it('should decrease the size when a node is removed', () => {
+    const bst = new BST();
+
+    bst.add(10);
+    bst.add(5);
+    bst.add(8);
+    bst.add(1);
+    bst.remove(1);
+
+    expect(bst.size).toBe(3);
+});
+
+it('should not decrease the size when no node was removed', () => {
+    const bst = new BST();
+
+    bst.add(10);
+    bst.remove(11);
+
+    expect(bst.size).toBe(1);
+});
+
 it('should tell whether a node is a leaf', () => {
     const bst = new BST();
 
