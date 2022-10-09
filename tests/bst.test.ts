@@ -76,3 +76,14 @@ it('should find a node', () => {
     expect(bst.find(40)?.data).toBe(40);
     expect(bst.find(1)?.data).toBe(1);
 });
+
+it('should increase the size as nodes are added to the tree', () => {
+    const bst = new BST();
+
+    bst.add(10);
+    bst.add(5);
+    bst.add(8);
+    bst.add(1);
+
+    expect(bst.size).toBe(4);
+});

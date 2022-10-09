@@ -12,9 +12,11 @@ export class Node {
 
 export class BST {
     root: Nullable<Node>;
+    size: number;
 
     constructor() {
         this.root = null;
+        this.size = 0;
     }
 
     add(value: number) {
@@ -22,6 +24,7 @@ export class BST {
 
         if (!node) {
             this.root = new Node(value);
+            this.size++;
             return;
         }
 
@@ -29,6 +32,7 @@ export class BST {
             if (value > node.data) {
                 if (node.right === null) {
                     node.right = new Node(value);
+                    this.size++;
                     return;
                 }
 
@@ -37,6 +41,7 @@ export class BST {
 
             if (node.left === null) {
                 node.left = new Node(value);
+                this.size++;
                 return;
             }
 
