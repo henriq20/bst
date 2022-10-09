@@ -45,4 +45,18 @@ export class BST {
 
         return search(node);
     }
+
+    has(value: number) {
+        let current = this.root;
+
+        while(current) {
+            if (value === current.data) {
+                return true;
+            }
+
+            current = value > current.data ? current.right : current.left;
+        }
+
+        return false;
+    }
 }

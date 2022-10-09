@@ -25,3 +25,16 @@ it('should add the value to the left if it is less than root', () => {
 
     expect(bst.root?.left?.data).toBe(1);
 });
+
+it('should check whether a node is present in the tree', () => {
+    const bst = new BST();
+
+    bst.add(5);
+    bst.add(1);
+    bst.add(10);
+
+    expect(bst.has(1)).toBe(true);
+    expect(bst.has(10)).toBe(true);
+    expect(bst.has(2)).toBe(false);
+    expect(bst.has(8)).toBe(false);
+});
