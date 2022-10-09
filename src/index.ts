@@ -1,9 +1,9 @@
 export class Node {
-    data: Nullable<number>;
+    data: number;
     left: Nullable<Node>;
     right: Nullable<Node>;
 
-    constructor(data: Nullable<number>, left: Nullable<Node> = null, right: Nullable<Node> = null) {
+    constructor(data: number, left: Nullable<Node> = null, right: Nullable<Node> = null) {
         this.data = data;
         this.left = left;
         this.right = right;
@@ -18,9 +18,31 @@ export class BST {
     }
 
     add(value: number) {
-        if (!this.root) {
+        const node = this.root;
+
+        if (!node) {
             this.root = new Node(value);
-            return this.root;
+            return;
         }
+
+        const search = (node: Node): void => {
+            if (value > node.data) {
+                if (node.right === null) {
+                    node.right = new Node(value);
+                    return;
+                }
+
+                return search(node.right);
+            }
+
+            if (node.left === null) {
+                node.left = new Node(value);
+                return;
+            }
+
+            return search(node.left);
+        };
+
+        return search(node);
     }
 }
