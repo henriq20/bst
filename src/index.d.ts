@@ -13,9 +13,9 @@ export class BST {
     /**
      * Adds a new node to the tree with the specified value.
      *
-     * @param value
+     * @param values
      */
-    add(value: number): void;
+    add(...values: number[]): void;
 
     /**
      * Indicates whether a node exists with the specified value.
@@ -50,9 +50,9 @@ export class BST {
     /**
      * Removes a node from the tree.
      *
-     * @param value
+     * @param values
      */
-    remove(value: number): void;
+    remove(...values: number[]): void;
 
     /**
      * Indicates whether a node with the given value has no sub-children (i.e is a leaf).
