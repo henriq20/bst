@@ -4,6 +4,10 @@
   "description": "A simple binary search tree",
   "main": "dist/index.js",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/henriq20/bst"
+  },
   "scripts": {
     "test": "jest",
     "build": "tsc",
