@@ -13,7 +13,9 @@ This library is an implementation of a BST in its simplest form.
   - [has](#has)
   - [min](#min)
   - [max](#max)
+  - [height](#height)
   - [isLeaf](#isLeaf)
+  - [isBalanced](#isBalanced)
 
 ## Installation
 
@@ -153,6 +155,20 @@ const root = bst.find(3);
 console.log(bst.max(root)); // 2
 ```
 
+#### height
+Gets the height of the tree.
+
+**Example**
+
+```JavaScript
+bst.add(8, 3, 1, 6, 4, 7, 10, 14, 13);
+
+console.log(bst.height()); // 3
+
+// you can also use depth, which is an alias for the height function
+console.log(bst.depth()); // 3
+```
+
 #### isLeaf
 Indicates whether a node has no sub-children (i.e is a leaf).
 
@@ -167,6 +183,19 @@ console.log(bst.isLeaf(10)); // false
 
 console.log(bst.isLeaf(1)); // true
 console.log(bst.isLeaf(14); // true
+```
+
+#### isBalanced
+Indicates whether the tree is balanced.
+
+**Example**
+
+```JavaScript
+const balancedTree = new BST([ 3, 1, 4, 2 ]);
+const unbalancedTree = new BST([ 1, 2, 3, 4, 5, 6 ]);
+
+console.log(balancedTree.isBalanced()); // true
+console.log(unbalancedTree.isBalanced()); // false
 ```
 
 ## Contributing
