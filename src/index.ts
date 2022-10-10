@@ -28,6 +28,8 @@ export class BST {
         for (const value of values) {
             this._addNode(value);
         }
+
+        return this;
     }
 
     _addNode(value: number) {
@@ -126,6 +128,8 @@ export class BST {
                 this.size--;
             }
         }
+
+        return this;
     }
 
     _removeNode(root: Nullable<Node>, value: number): Nullable<Node> {
