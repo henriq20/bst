@@ -15,7 +15,16 @@
     "format": "eslint src/** --fix",
     "postinstall": "husky install"
   },
-  "keywords": [],
+  "keywords": [
+    "bst",
+    "binary tree",
+    "binary search tree",
+    "search",
+    "tree",
+    "algorithm",
+    "data",
+    "structure"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
