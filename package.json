@@ -9,6 +9,11 @@
     "type": "git",
     "url": "https://github.com/henriq20/bst"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "jest",
     "build": "tsc",
