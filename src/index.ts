@@ -171,4 +171,17 @@ export class BST {
 
         return root;
     }
+
+    depth(root: Nullable<Node> = this.root): number {
+        return this.height(root);
+    }
+
+    height(root: Nullable<Node> = this.root): number {
+        if (!root) {
+            return -1;
+        }
+
+        return Math.max(this.height(root.left), this.height(root.right)) + 1;
+    }
+
 }
