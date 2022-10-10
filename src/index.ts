@@ -184,4 +184,29 @@ export class BST {
         return Math.max(this.height(root.left), this.height(root.right)) + 1;
     }
 
+    isBalanced(root: Nullable<Node> = this.root): boolean {
+        const isHeightBalanced = (node: Nullable<Node>): number => {
+            if (!node) {
+                return 0;
+            }
+
+            const leftHeight = isHeightBalanced(node.left);
+            if (leftHeight === -1) {
+                return -1;
+            }
+
+            const rightHeight = isHeightBalanced(node.right);
+            if (rightHeight === -1) {
+                return -1;
+            }
+
+            if (Math.abs(leftHeight - rightHeight) > 1) {
+                return -1;
+            }
+
+            return Math.max(leftHeight, rightHeight) + 1;
+        };
+
+        return isHeightBalanced(root) > -1;
+    }
 }

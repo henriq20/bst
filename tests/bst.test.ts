@@ -299,3 +299,23 @@ describe('height', () => {
         expect(bst.height()).toBe(0);
     });
 });
+
+describe('isBalanced', () => {
+    it.each([
+        // True cases
+        [ true, [ 3, 1, 4, 2 ] ],
+        [ true, [ 10, 20, 5, 1 ] ],
+        [ true, [ 30, 17, 11, 19, 10, 37, 31, 38 ] ],
+
+        // False cases
+        [ false, [ 1, 2, 3, 4, 5, 6 ] ],
+        [ false, [ 40, 70, 35, 39, 30, 34, 20, 10, 5 ] ],
+        [ false, [ 10, 8, 2, 1, 6, 4, 3, 5, 11, 14, 13, 16 ] ]
+    ])('should return %p when tree has the nodes %p', (expected, nodes) => {
+        const bst = new BST();
+
+        bst.add(...nodes);
+
+        expect(bst.isBalanced()).toBe(expected);
+    });
+});
