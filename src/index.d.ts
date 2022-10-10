@@ -89,3 +89,5 @@ export class BST {
      */
     isBalanced(root: Nullable<Node>): boolean;
 }
+
+export default BST;

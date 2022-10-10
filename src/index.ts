@@ -210,3 +210,5 @@ export class BST {
         return isHeightBalanced(root) > -1;
     }
 }
+
+export default BST;
