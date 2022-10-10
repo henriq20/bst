@@ -242,3 +242,10 @@ it('should remove multiple values', () => {
 
     expect(bst.size).toBe(2);
 });
+
+it('should initialize the tree with a set of numbers', () => {
+    const bst = new BST([ 1, 2, 3, 4, 5 ]);
+
+    expect(bst.root?.data).toBe(1);
+    expect(bst.size).toBe(5);
+});

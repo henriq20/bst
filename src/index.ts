@@ -15,9 +15,13 @@ export class BST {
     root: Nullable<Node>;
     size: number;
 
-    constructor() {
+    constructor(collection?: number[]) {
         this.root = null;
         this.size = 0;
+
+        if (collection) {
+            this.add(...collection);
+        }
     }
 
     add(...values: number[]) {

@@ -11,6 +11,14 @@ export class BST {
     size: number;
 
     /**
+     * Initializes a new BST.
+     * Optionally takes a collection of numbers to add to the tree.
+     *
+     * @param collection
+     */
+    constructor(collection: number[]);
+
+    /**
      * Adds a new node to the tree with the specified value.
      *
      * @param values
