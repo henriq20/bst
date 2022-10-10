@@ -68,4 +68,24 @@ export class BST {
      * @param value
      */
     isLeaf(value: number): boolean;
+
+    /**
+     * Gets the height of the tree.
+     * This functions is an alias for the `height` function.
+     *
+     * @param root
+     */
+    depth(root: Nullable<Node>): number;
+
+    /**
+     * Gets the height of the tree.
+     *
+     * @param root
+     */
+    height(root: Nullable<Node>): number;
+
+    /**
+     * Indicates whether `root` is balanced.
+     */
+    isBalanced(root: Nullable<Node>): boolean;
 }
