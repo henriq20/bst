@@ -1,3 +1,5 @@
+type Nullable<T> = T | null;
+
 export class Node {
     data: number;
     left: Nullable<Node>;
