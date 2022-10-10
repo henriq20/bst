@@ -20,7 +20,13 @@ export class BST {
         this.size = 0;
     }
 
-    add(value: number) {
+    add(...values: number[]) {
+        for (const value of values) {
+            this._addNode(value);
+        }
+    }
+
+    _addNode(value: number) {
         const node = this.root;
 
         if (!node) {
@@ -108,24 +114,24 @@ export class BST {
 
     remove(value: number) {
         const root = JSON.stringify(this.root);
-        this.root = this._remove(this.root, value);
+        this.root = this._removeNode(this.root, value);
 
         if (root !== JSON.stringify(this.root)) {
             this.size--;
         }
     }
 
-    _remove(root: Nullable<Node>, value: number): Nullable<Node> {
+    _removeNode(root: Nullable<Node>, value: number): Nullable<Node> {
         if (!root) {
             return root;
         }
 
         if (value > root.data) {
-            root.right = this._remove(root.right, value);
+            root.right = this._removeNode(root.right, value);
             return root;
         }
         if (value < root.data) {
-            root.left = this._remove(root.left, value);
+            root.left = this._removeNode(root.left, value);
             return root;
         }
 
