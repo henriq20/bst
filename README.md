@@ -20,9 +20,9 @@ This library is an implementation of a BST, it does not have the intent to be as
 Use npm or yarn to install this library.
 
 ```bash
-npm install bsc
+npm install simple-bsc
 # or
-yarn add bsc
+yarn add simple-bsc
 ```
 
 ## Usage
