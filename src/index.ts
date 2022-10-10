@@ -112,12 +112,15 @@ export class BST {
         return !node?.right && !node?.left;
     }
 
-    remove(value: number) {
-        const root = JSON.stringify(this.root);
-        this.root = this._removeNode(this.root, value);
+    remove(...values: number[]) {
+        for (const value of values) {
+            const root = JSON.stringify(this.root);
+            this.root = this._removeNode(this.root, value);
 
-        if (root !== JSON.stringify(this.root)) {
-            this.size--;
+            // If root is different from this.root, then a node was removed.
+            if (root !== JSON.stringify(this.root)) {
+                this.size--;
+            }
         }
     }
 

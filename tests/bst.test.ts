@@ -228,3 +228,17 @@ it('should remove a node from the tree when the node has two children', () => {
     expect(bst.root?.left?.data).toBe(40);
     expect(bst.root?.right?.data).toBe(70);
 });
+
+it('should remove multiple values', () => {
+    const bst = new BST();
+
+    bst.add(50);
+    bst.add(40);
+    bst.add(70);
+    bst.add(60);
+    bst.add(80);
+
+    bst.remove(50, 40, 70);
+
+    expect(bst.size).toBe(2);
+});
