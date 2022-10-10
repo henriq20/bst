@@ -20,41 +20,41 @@ This library is an implementation of a BST, it does not have the intent to be as
 Use npm or yarn to install this library.
 
 ```bash
-npm install simple-bsc
+npm install simple-bst
 # or
-yarn add simple-bsc
+yarn add simple-bst
 ```
 
 ## Usage
 
 ```JavaScript
-import { BSC } from 'bsc';
+import { BST } from 'simple-bst';
 
-const bsc = new BSC();
+const bst = new BST();
 
 // Adding nodes
-bsc.add(5);
-bsc.add(15);
-bsc.add(2);
-bsc.add(20);
-bsc.add(70);
-bsc.add(45);
+bst.add(5);
+bst.add(15);
+bst.add(2);
+bst.add(20);
+bst.add(70);
+bst.add(45);
 
 // Removing nodes
-bsc.remove(15);
+bst.remove(15);
 
 // Checking if a node is present
-if (bsc.has(2)) {
+if (bst.has(2)) {
     console.log('The number 2 is present in the tree');
 } else {
     console.log('The number 2 is not present in the tree');
 }
 
 // Getting the max value
-const max = bsc.max(); // 70
+const max = bst.max(); // 70
 
 // Getting the min value
-const min = bsc.min(); // 2
+const min = bst.min(); // 2
 ```
 
 ## API
@@ -65,10 +65,10 @@ Adds a node in the tree.
 **Example**
 
 ```JavaScript
-bsc.add(5); // First node becomes the root
-bsc.add(10);
+bst.add(5); // First node becomes the root
+bst.add(10);
 
-console.log(bsc.size); // 2
+console.log(bst.size); // 2
 ```
 
 #### remove
@@ -77,12 +77,12 @@ Removes a node from the tree.
 **Example**
 
 ```JavaScript
-bsc.add(5);
-bsc.add(10);
+bst.add(5);
+bst.add(10);
 
-bsc.remove(10);
+bst.remove(10);
 
-console.log(bsc.size); // 1
+console.log(bst.size); // 1
 ```
 
 #### find
@@ -91,10 +91,10 @@ Searches for a given value in the tree and returns the node.
 **Example**
 
 ```JavaScript
-bsc.add(5);
-bsc.add(10);
+bst.add(5);
+bst.add(10);
 
-const node = bsc.find(10);
+const node = bst.find(10);
 
 console.log(node.data); // 10
 ```
@@ -105,18 +105,18 @@ Indicates whether a value exists. Optionally takes a root node from which to che
 **Example**
 
 ```JavaScript
-bsc.add(5);
-bsc.add(10);
-bsc.add(15);
-bsc.add(9);
-bsc.add(7);
+bst.add(5);
+bst.add(10);
+bst.add(15);
+bst.add(9);
+bst.add(7);
 
-console.log(bsc.has(5)); // true
-console.log(bsc.has(14)); // false
+console.log(bst.has(5)); // true
+console.log(bst.has(14)); // false
 
-const root = bsc.find(15);
+const root = bst.find(15);
 
-console.log(bsc.has(5, root)); // false
+console.log(bst.has(5, root)); // false
 ```
 
 #### min
@@ -125,18 +125,18 @@ Finds the minimum value in the tree. Optionally takes a root node from which to 
 **Example**
 
 ```JavaScript
-bsc.add(5);
-bsc.add(2);
-bsc.add(10);
-bsc.add(15);
-bsc.add(9);
-bsc.add(7);
+bst.add(5);
+bst.add(2);
+bst.add(10);
+bst.add(15);
+bst.add(9);
+bst.add(7);
 
-console.log(bsc.min()); // 2
+console.log(bst.min()); // 2
 
-const root = bsc.find(10);
+const root = bst.find(10);
 
-console.log(bsc.min(root)); // 7
+console.log(bst.min(root)); // 7
 ```
 
 #### max
@@ -145,20 +145,20 @@ Finds the maximum value in the tree. Optionally takes a root node from which to 
 **Example**
 
 ```JavaScript
-bsc.add(5);
-bsc.add(2);
-bsc.add(3);
-bsc.add(1);
-bsc.add(10);
-bsc.add(15);
-bsc.add(9);
-bsc.add(7);
+bst.add(5);
+bst.add(2);
+bst.add(3);
+bst.add(1);
+bst.add(10);
+bst.add(15);
+bst.add(9);
+bst.add(7);
 
-console.log(bsc.max()); // 15
+console.log(bst.max()); // 15
 
-const root = bsc.find(3);
+const root = bst.find(3);
 
-console.log(bsc.max(root)); // 2
+console.log(bst.max(root)); // 2
 ```
 
 #### isLeaf
