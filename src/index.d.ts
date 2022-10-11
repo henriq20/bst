@@ -23,7 +23,7 @@ export class BST {
      *
      * @param values
      */
-    add(...values: number[]): void;
+    add(...values: number[]): this;
 
     /**
      * Indicates whether a node exists with the specified value.
@@ -60,7 +60,7 @@ export class BST {
      *
      * @param values
      */
-    remove(...values: number[]): void;
+    remove(...values: number[]): this;
 
     /**
      * Indicates whether a node with the given value has no sub-children (i.e is a leaf).
