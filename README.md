@@ -52,6 +52,9 @@ bst.add(8, 72, 95, 21, 22);
 // Removing nodes
 bst.remove(15, 45);
 
+// Chaining functions
+bst.add(6).add(8).add(1).remove(8);
+
 // Checking if a node is present
 if (bst.has(2)) {
     console.log('The number 2 is present in the tree');
