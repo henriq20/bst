@@ -1,4 +1,4 @@
-import { BST } from '../src/index';
+import { BST, Node } from '../src/index';
 
 describe('add', () => {
     it('should define the first added value as the root', () => {
@@ -36,6 +36,22 @@ describe('add', () => {
         expect(bst.root?.left?.data).toBe(1);
         expect(bst.root?.left?.left).toBe(null);
         expect(bst.root?.left?.right).toBe(null);
+    });
+
+    it('should allow a Node instance', () => {
+        const bst = new BST();
+
+        bst.add(new Node(5)).add(new Node(1)).add(new Node(15));
+
+        expect(bst.size).toBe(3);
+
+        expect(bst.root?.left?.data).toBe(1);
+        expect(bst.root?.left?.left).toBe(null);
+        expect(bst.root?.left?.right).toBe(null);
+
+        expect(bst.root?.right?.data).toBe(15);
+        expect(bst.root?.right?.right).toBe(null);
+        expect(bst.root?.right?.right).toBe(null);
     });
 
     it('should add multiple values', () => {

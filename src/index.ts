@@ -60,7 +60,7 @@ export class BST {
      *
      * @param values
      */
-    add(...values: number[]) {
+    add(...values: number[] | Node[]) {
         for (const value of values) {
             this._addNode(value);
         }
@@ -68,8 +68,8 @@ export class BST {
         return this;
     }
 
-    _addNode(value: number) {
-        const node = new Node(value);
+    _addNode(value: number | Node) {
+        const node = typeof value === 'number' ? new Node(value) : value;
 
         if (!this.root) {
             this.root = node;
@@ -82,18 +82,18 @@ export class BST {
 
         while (tempNode !== null) {
             // If a node with the same value already exists, then don't add it
-            if (tempNode.data === value) {
+            if (tempNode.data === node.data) {
                 return;
             }
 
             previousNode = tempNode;
-            tempNode = value > tempNode.data ? tempNode.right : tempNode.left;
+            tempNode = node.data > tempNode.data ? tempNode.right : tempNode.left;
         }
 
         if (previousNode) {
             this.size++;
 
-            if (previousNode.data > value) {
+            if (previousNode.data > node.data) {
                 previousNode.left = node;
                 return;
             }
