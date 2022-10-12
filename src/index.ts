@@ -300,17 +300,19 @@ export class BST {
      * @param order The order type.
      * @param root The root node.
      */
-    traverse(order: TraversalOrder = 'inorder', root: Nullable<Node> = this.root): Node[] {
+    *traverse(order: TraversalOrder = 'inorder', root: Nullable<Node> = this.root): Generator<Node> {
         switch (order) {
             case 'preorder':
-                return this.preorder(root);
+                yield* this.preorder(root);
+                break;
 
             case 'postorder':
-                return this.postorder(root);
+                yield* this.postorder(root);
+                break;
 
             case 'inorder':
             default:
-                return this.inorder(root);
+                yield* this.inorder(root);
         }
     }
 
@@ -319,12 +321,31 @@ export class BST {
      *
      * @param root The root node.
      */
-    inorder(root: Nullable<Node> = this.root): Node[] {
+    *inorder(root: Nullable<Node> = this.root): Generator<Node> {
         if (!root) {
-            return [];
+            return;
         }
 
-        return [ ...this.inorder(root.left), root, ...this.inorder(root.right) ];
+        const stack = [];
+        let node: Nullable<Node> = root;
+
+        while (node || stack.length) {
+            // Keeps pushing the leftmost node until it's null
+            if (node) {
+                stack.push(node);
+                node = node.left;
+                continue;
+            }
+
+            // If node is null, then pops the last added node from the stack
+            node = stack.pop() ?? null;
+
+            if (node) {
+                // Yields the last node and then sets the node equal to its right child
+                yield node;
+                node = node?.right ?? null;
+            }
+        }
     }
 
     /**
@@ -332,12 +353,31 @@ export class BST {
      *
      * @param root The root node.
      */
-    preorder(root: Nullable<Node> = this.root): Node[] {
+    *preorder(root: Nullable<Node> = this.root): Generator<Node> {
         if (!root) {
-            return [];
+            return;
         }
 
-        return [ root, ...this.preorder(root.left), ...this.preorder(root.right) ];
+        const stack = [ root ];
+        let node;
+
+        // Removes the last node from the array and yields it until the stack is empty.
+        while ((node = stack.pop()) !== undefined) {
+            if (node) {
+                yield node;
+
+                // Pushes the right and left children to the stack.
+                if (node.right) {
+                    stack.push(node.right);
+                }
+
+                // It's crucial to add the left node after the right one
+                // because we want to yield them first
+                if (node.left) {
+                    stack.push(node.left);
+                }
+            }
+        }
     }
 
     /**
@@ -345,12 +385,36 @@ export class BST {
      *
      * @param root The root node.
      */
-    postorder(root: Nullable<Node> = this.root): Node[] {
+    *postorder(root: Nullable<Node> = this.root): Generator<Node> {
         if (!root) {
-            return [];
+            return;
         }
 
-        return [ ...this.postorder(root.left), ...this.postorder(root.right), root ];
+        const stack = [];
+        let previousNode: Nullable<Node> = null;
+
+        while (root || stack.length) {
+            // Keeps pushing the leftmost node until it's null
+            if (root) {
+                stack.push(root);
+                root = root.left;
+                continue;
+            }
+
+            root = stack.at(-1) ?? null;
+
+            // If root has no right child or its right child is the previous node,
+            // then the right subtree was already traversed
+            if (root && (!root?.right || root.right === previousNode)) {
+                yield root;
+
+                previousNode = stack.pop() ?? null;
+                root = null;
+                continue;
+            }
+
+            root = root?.right ?? null;
+        }
     }
 }
 

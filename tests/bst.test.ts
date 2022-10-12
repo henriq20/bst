@@ -356,7 +356,7 @@ describe('inorder', () => {
     ])('should traverse the tree inorder and return the numbers in the sequence $expected', ({ nodes, expected }) => {
         const bst = new BST(nodes);
 
-        expect(bst.inorder().map(node => node.data)).toStrictEqual(expected);
+        expect(Array.from(bst.inorder()).map(node => node.data)).toStrictEqual(expected);
     });
 });
 
@@ -382,10 +382,10 @@ describe('preorder', () => {
             nodes: [ 25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 ],
             expected: [ 25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 ]
         },
-    ])('should traverse the tree inorder and return the numbers in the sequence $expected', ({ nodes, expected }) => {
+    ])('should traverse the tree preorder and return the numbers in the sequence $expected', ({ nodes, expected }) => {
         const bst = new BST(nodes);
 
-        expect(bst.preorder().map(node => node.data)).toStrictEqual(expected);
+        expect(Array.from(bst.preorder()).map(node => node.data)).toStrictEqual(expected);
     });
 });
 
@@ -411,10 +411,10 @@ describe('postorder', () => {
             nodes: [ 25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 ],
             expected: [ 4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25 ]
         },
-    ])('should traverse the tree inorder and return the numbers in the sequence $expected', ({ nodes, expected }) => {
+    ])('should traverse the tree postorder and return the numbers in the sequence $expected', ({ nodes, expected }) => {
         const bst = new BST(nodes);
 
-        expect(bst.postorder().map(node => node.data)).toStrictEqual(expected);
+        expect(Array.from(bst.postorder()).map(node => node.data)).toStrictEqual(expected);
     });
 });
 
@@ -422,9 +422,20 @@ describe('traverse', () => {
     it('should traverse the tree using the specified order', () => {
         const bst = new BST([ 4, 2, 1, 3, 6, 5, 7 ]);
 
-        expect(bst.traverse().map(node => node.data)).toStrictEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
-        expect(bst.traverse('inorder').map(node => node.data)).toStrictEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
-        expect(bst.traverse('preorder').map(node => node.data)).toStrictEqual([ 4, 2, 1, 3, 6, 5, 7 ]);
-        expect(bst.traverse('postorder').map(node => node.data)).toStrictEqual([ 1, 3, 2, 5, 7, 6, 4 ]);
+        const inorder = Array.from(bst.traverse('inorder')).map(node => node.data);
+        const preorder = Array.from(bst.traverse('preorder')).map(node => node.data);
+        const postorder = Array.from(bst.traverse('postorder')).map(node => node.data);
+
+        expect(inorder).toStrictEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
+        expect(preorder).toStrictEqual([ 4, 2, 1, 3, 6, 5, 7 ]);
+        expect(postorder).toStrictEqual([ 1, 3, 2, 5, 7, 6, 4 ]);
+    });
+
+    it('should traverse the tree inorder by default', () => {
+        const bst = new BST([ 4, 2, 1, 3, 6, 5, 7 ]);
+
+        const results = Array.from(bst.traverse()).map(node => node.data);
+
+        expect(results).toStrictEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
     });
 });
