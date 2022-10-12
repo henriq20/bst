@@ -69,35 +69,37 @@ export class BST {
     }
 
     _addNode(value: number) {
-        const node = this.root;
+        const node = new Node(value);
 
-        if (!node) {
-            this.root = new Node(value);
+        if (!this.root) {
+            this.root = node;
             this.size++;
             return;
         }
 
-        const search = (node: Node): void => {
-            if (value > node.data) {
-                if (node.right === null) {
-                    node.right = new Node(value);
-                    this.size++;
-                    return;
-                }
+        let previousNode: Nullable<Node> = null;
+        let tempNode: Nullable<Node> = this.root;
 
-                return search(node.right);
-            }
-
-            if (node.left === null) {
-                node.left = new Node(value);
-                this.size++;
+        while (tempNode !== null) {
+            // If a node with the same value already exists, then don't add it
+            if (tempNode.data === value) {
                 return;
             }
 
-            return search(node.left);
-        };
+            previousNode = tempNode;
+            tempNode = value > tempNode.data ? tempNode.right : tempNode.left;
+        }
 
-        return search(node);
+        if (previousNode) {
+            this.size++;
+
+            if (previousNode.data > value) {
+                previousNode.left = node;
+                return;
+            }
+
+            previousNode.right = node;
+        }
     }
 
     /**
@@ -110,7 +112,7 @@ export class BST {
     has(value: number, root: Nullable<Node> = null): boolean {
         let current = root ?? this.root;
 
-        while(current) {
+        while (current) {
             if (value === current.data) {
                 return true;
             }

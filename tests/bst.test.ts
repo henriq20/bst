@@ -27,6 +27,17 @@ describe('add', () => {
         expect(bst.root?.left?.data).toBe(1);
     });
 
+    it('should not add the value if it already exists', () => {
+        const bst = new BST();
+
+        bst.add(5).add(1).add(1);
+
+        expect(bst.size).toBe(2);
+        expect(bst.root?.left?.data).toBe(1);
+        expect(bst.root?.left?.left).toBe(null);
+        expect(bst.root?.left?.right).toBe(null);
+    });
+
     it('should add multiple values', () => {
         const bst = new BST();
 
