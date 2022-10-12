@@ -14,6 +14,10 @@ This library is an implementation of a BST in its simplest form.
   - [min](#min)
   - [max](#max)
   - [height](#height)
+  - [traverse](#traverse)
+  - [inorder](#inorder)
+  - [preorder](#preorder)
+  - [postorder](#postorder)
   - [isLeaf](#isLeaf)
   - [isBalanced](#isBalanced)
 
@@ -164,6 +168,60 @@ console.log(bst.height()); // 3
 
 // you can also use depth, which is an alias for the height function
 console.log(bst.depth()); // 3
+```
+
+#### traverse
+Traverses the tree using the specified order.
+
+**Example**
+
+```JavaScript
+bst.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+
+// [ 1, 2, 3, 4, 5, 6, 7 ]
+console.log(bst.traverse('inorder').map(node => node.data));
+
+// [ 4, 2, 1, 3, 6, 5, 7 ]
+console.log(bst.traverse('preorder').map(node => node.data));
+
+// [ 1, 3, 2, 5, 7, 6, 4 ]
+console.log(bst.traverse('postorder').map(node => node.data));
+```
+
+#### inorder
+Traverses the tree from the left subtree to the root, then to the right subtree.
+
+**Example**
+
+```JavaScript
+bst.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+
+// [ 1, 2, 3, 4, 5, 6, 7 ]
+console.log(bst.inorder().map(node => node.data));
+```
+
+#### preorder
+Traverses the tree from the `root` to the left subtree, then to the right subtree.
+
+**Example**
+
+```JavaScript
+bst.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+
+// [ 4, 2, 1, 3, 6, 5, 7 ]
+console.log(bst.preorder().map(node => node.data));
+```
+
+#### postorder
+Traverses the tree from the left subtree to the right subtree, then to the root.
+
+**Example**
+
+```JavaScript
+bst.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+
+// [ 1, 3, 2, 5, 7, 6, 4 ]
+console.log(bst.preorder().map(node => node.data));
 ```
 
 #### isLeaf
