@@ -6,13 +6,18 @@
     "outDir": "./dist",
     "moduleResolution": "Node",
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "declaration": true
   },
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
     "./tests",
     "./dist",
-    "jest.config.ts"
+    "jest.config.ts",
+    "node_modules"
   ]
 }
