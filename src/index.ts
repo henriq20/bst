@@ -1,5 +1,7 @@
 type Nullable<T> = T | null;
 
+type TraversalOrder = 'inorder' | 'preorder' | 'postorder';
+
 export class Node {
     /**
      * Gets the value of the node.
@@ -290,6 +292,31 @@ export class BST {
         return isHeightBalanced(root) > -1;
     }
 
+    /**
+     * Traverses the tree using the specified `order`.
+     *
+     * @param order The order type.
+     * @param root The root node.
+     */
+    traverse(order: TraversalOrder = 'inorder', root: Nullable<Node> = this.root): Node[] {
+        switch (order) {
+            case 'preorder':
+                return this.preorder(root);
+
+            case 'postorder':
+                return this.postorder(root);
+
+            case 'inorder':
+            default:
+                return this.inorder(root);
+        }
+    }
+
+    /**
+     * Traverses the tree from the left subtree to the `root`, then to the right subtree.
+     *
+     * @param root The root node.
+     */
     inorder(root: Nullable<Node> = this.root): Node[] {
         if (!root) {
             return [];
@@ -298,6 +325,11 @@ export class BST {
         return [ ...this.inorder(root.left), root, ...this.inorder(root.right) ];
     }
 
+    /**
+     * Traverses the tree from the `root` to the left subtree, then to the right subtree.
+     *
+     * @param root The root node.
+     */
     preorder(root: Nullable<Node> = this.root): Node[] {
         if (!root) {
             return [];
@@ -306,6 +338,11 @@ export class BST {
         return [ root, ...this.preorder(root.left), ...this.preorder(root.right) ];
     }
 
+    /**
+     * Traverses the tree from the left subtree to the right subtree, then to the root.
+     *
+     * @param root The root node.
+     */
     postorder(root: Nullable<Node> = this.root): Node[] {
         if (!root) {
             return [];

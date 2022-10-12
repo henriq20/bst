@@ -406,3 +406,14 @@ describe('postorder', () => {
         expect(bst.postorder().map(node => node.data)).toStrictEqual(expected);
     });
 });
+
+describe('traverse', () => {
+    it('should traverse the tree using the specified order', () => {
+        const bst = new BST([ 4, 2, 1, 3, 6, 5, 7 ]);
+
+        expect(bst.traverse().map(node => node.data)).toStrictEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
+        expect(bst.traverse('inorder').map(node => node.data)).toStrictEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
+        expect(bst.traverse('preorder').map(node => node.data)).toStrictEqual([ 4, 2, 1, 3, 6, 5, 7 ]);
+        expect(bst.traverse('postorder').map(node => node.data)).toStrictEqual([ 1, 3, 2, 5, 7, 6, 4 ]);
+    });
+});
