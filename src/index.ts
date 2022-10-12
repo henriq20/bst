@@ -289,6 +289,30 @@ export class BST {
 
         return isHeightBalanced(root) > -1;
     }
+
+    inorder(root: Nullable<Node> = this.root): Node[] {
+        if (!root) {
+            return [];
+        }
+
+        return [ ...this.inorder(root.left), root, ...this.inorder(root.right) ];
+    }
+
+    preorder(root: Nullable<Node> = this.root): Node[] {
+        if (!root) {
+            return [];
+        }
+
+        return [ root, ...this.preorder(root.left), ...this.preorder(root.right) ];
+    }
+
+    postorder(root: Nullable<Node> = this.root): Node[] {
+        if (!root) {
+            return [];
+        }
+
+        return [ ...this.postorder(root.left), ...this.postorder(root.right), root ];
+    }
 }
 
 export default BST;

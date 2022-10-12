@@ -319,3 +319,90 @@ describe('isBalanced', () => {
         expect(bst.isBalanced()).toBe(expected);
     });
 });
+
+describe('inorder', () => {
+    it.each([
+        {
+            nodes: [],
+            expected: []
+        },
+        {
+            nodes: [ 5 ],
+            expected: [ 5 ]
+        },
+        {
+            nodes: [ 4, 2, 1, 3, 6, 5, 7 ],
+            expected: [ 1, 2, 3, 4, 5, 6, 7 ]
+        },
+        {
+            nodes: [ 20, 22, 8, 4, 12, 10, 14 ],
+            expected: [ 4, 8, 10, 12, 14, 20, 22 ]
+        },
+        {
+            nodes: [ 25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 ],
+            expected: [ 4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90 ]
+        },
+    ])('should traverse the tree inorder and return the numbers in the sequence $expected', ({ nodes, expected }) => {
+        const bst = new BST(nodes);
+
+        expect(bst.inorder().map(node => node.data)).toStrictEqual(expected);
+    });
+});
+
+describe('preorder', () => {
+    it.each([
+        {
+            nodes: [],
+            expected: []
+        },
+        {
+            nodes: [ 5 ],
+            expected: [ 5 ]
+        },
+        {
+            nodes: [ 4, 2, 1, 3, 6, 5, 7 ],
+            expected: [ 4, 2, 1, 3, 6, 5, 7 ]
+        },
+        {
+            nodes: [ 20, 22, 8, 4, 12, 10, 14 ],
+            expected: [ 20, 8, 4, 12, 10, 14, 22 ]
+        },
+        {
+            nodes: [ 25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 ],
+            expected: [ 25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 ]
+        },
+    ])('should traverse the tree inorder and return the numbers in the sequence $expected', ({ nodes, expected }) => {
+        const bst = new BST(nodes);
+
+        expect(bst.preorder().map(node => node.data)).toStrictEqual(expected);
+    });
+});
+
+describe('postorder', () => {
+    it.each([
+        {
+            nodes: [],
+            expected: []
+        },
+        {
+            nodes: [ 5 ],
+            expected: [ 5 ]
+        },
+        {
+            nodes: [ 4, 2, 1, 3, 6, 5, 7 ],
+            expected: [ 1, 3, 2, 5, 7, 6, 4 ]
+        },
+        {
+            nodes: [ 20, 22, 8, 4, 12, 10, 14 ],
+            expected: [ 4, 10, 14, 12, 8, 22, 20 ]
+        },
+        {
+            nodes: [ 25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 ],
+            expected: [ 4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25 ]
+        },
+    ])('should traverse the tree inorder and return the numbers in the sequence $expected', ({ nodes, expected }) => {
+        const bst = new BST(nodes);
+
+        expect(bst.postorder().map(node => node.data)).toStrictEqual(expected);
+    });
+});
