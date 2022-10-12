@@ -1,25 +1,28 @@
-# Binary Search Tree (BST)
+# :deciduous_tree: simple-bst
 
-This library is an implementation of a BST in its simplest form.
+An implementation of a Binary Search Tree (BST)
 
----
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [API](#api)
-  - [add](#add)
-  - [remove](#remove)
-  - [find](#find)
-  - [has](#has)
-  - [min](#min)
-  - [max](#max)
-  - [height](#height)
-  - [traverse](#traverse)
-  - [inorder](#inorder)
-  - [preorder](#preorder)
-  - [postorder](#postorder)
-  - [isLeaf](#isLeaf)
-  - [isBalanced](#isBalanced)
+## Table of contents
+- [simple-bst](#deciduous_tree-simple-bst)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [API](#api)
+    - [add](#add)
+    - [remove](#remove)
+    - [find](#find)
+    - [has](#has)
+    - [min](#min)
+    - [max](#max)
+    - [height](#height)
+    - [Traversing the tree](#traversing-the-tree)
+      - [traverse](#traverse)
+      - [inorder](#inorder)
+      - [preorder](#preorder)
+      - [postorder](#postorder)
+    - [Utility functions](#utility-functions)
+      - [isLeaf](#isleaf)
+      - [isBalanced](#isbalanced)
+  - [Contributing](#contributing)
 
 ## Installation
 
@@ -38,33 +41,33 @@ yarn add simple-bst
 ## Usage
 
 ```JavaScript
-import BST from 'simple-bst';
+import { BST, Node } from 'simple-bst';
 
 // also works
-// import { BST, Node } from 'simple-bst';
+// import BST from 'simple-bst';
 
-const bst = new BST();
+const tree = new BST();
 
 // Adding and removing nodes
-bst.add(5).add(15).add(2).add(20).remove(15);
+tree.add(5).add(15).add(2).add(new Node(20)).remove(15);
 
 // Shortex syntax
-bst.add(8, 72, 95).remove(72, 95);
+tree.add(8, 72, 95).remove(72, 95);
 
-console.log(bst.size); // 4
+console.log(tree.size); // 4
 
 // Checking if a node is present
-if (bst.has(2)) {
+if (tree.has(2)) {
   console.log('The number 2 is present in the tree');
 } else {
   console.log('The number 2 is not present in the tree');
 }
 
 // Getting the max value
-const max = bst.max(); // 20
+const max = tree.max(); // 20
 
 // Getting the min value
-const min = bst.min(); // 2
+const min = tree.min(); // 2
 ```
 
 ## API
@@ -72,40 +75,34 @@ const min = bst.min(); // 2
 #### add
 Adds a node in the tree.
 
-**Example**
-
 ```JavaScript
-bst.add(5); // First node becomes the root
-bst.add(10);
+tree.add(5); // First node becomes the root
+tree.add(10);
 
 // Shorter syntax
-bst.add(8, 11);
+tree.add(8, 11);
 
-console.log(bst.size); // 4
+console.log(tree.size); // 4
 ```
 
 #### remove
 Removes a node from the tree.
 
-**Example**
-
 ```JavaScript
-bst.add(5, 10, 20, 2, 4, 18);
+tree.add(5, 10, 20, 2, 4, 18);
 
-bst.remove(10, 18);
+tree.remove(10, 18);
 
-console.log(bst.size); // 4
+console.log(tree.size); // 4
 ```
 
 #### find
 Searches for a given value in the tree and returns the node.
 
-**Example**
-
 ```JavaScript
-bst.add(5, 10);
+tree.add(5, 10);
 
-const node = bst.find(10);
+const node = tree.find(10);
 
 console.log(node.data); // 10
 ```
@@ -113,137 +110,123 @@ console.log(node.data); // 10
 #### has
 Indicates whether a value exists. Optionally takes a root node from which to check the value.
 
-**Example**
-
 ```JavaScript
-bst.add(5, 10, 15, 9, 7);
+tree.add(5, 10, 15, 9, 7);
 
-console.log(bst.has(5)); // true
-console.log(bst.has(14)); // false
+console.log(tree.has(5)); // true
+console.log(tree.has(14)); // false
 
-const root = bst.find(15);
+const root = tree.find(15);
 
-console.log(bst.has(5, root)); // false
+console.log(tree.has(5, root)); // false
 ```
 
 #### min
 Finds the minimum value in the tree. Optionally takes a root node from which to find the value.
 
-**Example**
-
 ```JavaScript
-bst.add(5, 2, 10, 15, 9, 7);
+tree.add(5, 2, 10, 15, 9, 7);
 
-console.log(bst.min()); // 2
+console.log(tree.min()); // 2
 
-const root = bst.find(10);
+const root = tree.find(10);
 
-console.log(bst.min(root)); // 7
+console.log(tree.min(root)); // 7
 ```
 
 #### max
 Finds the maximum value in the tree. Optionally takes a root node from which to find the value.
 
-**Example**
-
 ```JavaScript
-bst.add(5, 2, 3, 1, 10, 15, 9, 7);
+tree.add(5, 2, 3, 1, 10, 15, 9, 7);
 
-console.log(bst.max()); // 15
+console.log(tree.max()); // 15
 
-const root = bst.find(3);
+const root = tree.find(3);
 
-console.log(bst.max(root)); // 2
+console.log(tree.max(root)); // 2
 ```
 
 #### height
 Gets the height of the tree.
 
-**Example**
-
 ```JavaScript
-bst.add(8, 3, 1, 6, 4, 7, 10, 14, 13);
+tree.add(8, 3, 1, 6, 4, 7, 10, 14, 13);
 
-console.log(bst.height()); // 3
+console.log(tree.height()); // 3
 
 // you can also use depth, which is an alias for the height function
-console.log(bst.depth()); // 3
+console.log(tree.depth()); // 3
 ```
+
+### Traversing the tree
+All traversal functions are generator functions, which return a [Generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator).
 
 #### traverse
 Traverses the tree using the specified order.
 
-**Example**
-
 ```JavaScript
-bst.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+tree.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
 
-// [ 1, 2, 3, 4, 5, 6, 7 ]
-console.log(bst.traverse('inorder').map(node => node.data));
-
-// [ 4, 2, 1, 3, 6, 5, 7 ]
-console.log(bst.traverse('preorder').map(node => node.data));
-
-// [ 1, 3, 2, 5, 7, 6, 4 ]
-console.log(bst.traverse('postorder').map(node => node.data));
+for (const node of tree.traverse('inorder')) {
+  console.log(node.data);
+}
 ```
 
 #### inorder
 Traverses the tree from the left subtree to the root, then to the right subtree.
 
-**Example**
-
 ```JavaScript
-bst.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+tree.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+
+const inorder = Array.from(tree.inorder());
 
 // [ 1, 2, 3, 4, 5, 6, 7 ]
-console.log(bst.inorder().map(node => node.data));
+console.log(inorder.map(node => node.data));
 ```
 
 #### preorder
 Traverses the tree from the `root` to the left subtree, then to the right subtree.
 
-**Example**
-
 ```JavaScript
-bst.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+tree.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+
+const preorder = Array.from(tree.preorder());
 
 // [ 4, 2, 1, 3, 6, 5, 7 ]
-console.log(bst.preorder().map(node => node.data));
+console.log(preorder.map(node => node.data));
 ```
 
 #### postorder
 Traverses the tree from the left subtree to the right subtree, then to the root.
 
-**Example**
-
 ```JavaScript
-bst.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+tree.add(4).add(2).add(1).add(3).add(6).add(5).add(7);
+
+const postorder = Array.from(tree.postorder());
 
 // [ 1, 3, 2, 5, 7, 6, 4 ]
-console.log(bst.preorder().map(node => node.data));
+console.log(postorder.map(node => node.data));
 ```
+
+### Utility functions
 
 #### isLeaf
 Indicates whether a node has no sub-children (i.e is a leaf).
 
-**Example**
-
 ```JavaScript
-bst.add(8, 3, 1, 10, 15, 14);
+tree.add(8, 3, 1, 10, 15, 14);
 
-console.log(bst.isLeaf(8)); // false
-console.log(bst.isLeaf(3)); // false
-console.log(bst.isLeaf(10)); // false
+console.log(tree.isLeaf(8)); // false
+console.log(tree.isLeaf(3)); // false
+console.log(tree.isLeaf(10)); // false
 
-console.log(bst.isLeaf(1)); // true
-console.log(bst.isLeaf(14); // true
+console.log(tree.isLeaf(1)); // true
+console.log(tree.isLeaf(14); // true
 ```
 
 #### isBalanced
 Indicates whether the tree is balanced.
-
-**Example**
 
 ```JavaScript
 const balancedTree = new BST([ 3, 1, 4, 2 ]);
