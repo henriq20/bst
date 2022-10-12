@@ -34,36 +34,30 @@ yarn add simple-bst
 ## Usage
 
 ```JavaScript
-import { BST } from 'simple-bst';
+import BST from 'simple-bst';
+
+// also works
+// import { BST, Node } from 'simple-bst';
 
 const bst = new BST();
 
-// Adding nodes
-bst.add(5);
-bst.add(15);
-bst.add(2);
-bst.add(20);
-bst.add(70);
-bst.add(45);
+// Adding and removing nodes
+bst.add(5).add(15).add(2).add(20).remove(15);
 
 // Shortex syntax
-bst.add(8, 72, 95, 21, 22);
+bst.add(8, 72, 95).remove(72, 95);
 
-// Removing nodes
-bst.remove(15, 45);
-
-// Chaining functions
-bst.add(6).add(8).add(1).remove(8);
+console.log(bst.size); // 4
 
 // Checking if a node is present
 if (bst.has(2)) {
-    console.log('The number 2 is present in the tree');
+  console.log('The number 2 is present in the tree');
 } else {
-    console.log('The number 2 is not present in the tree');
+  console.log('The number 2 is not present in the tree');
 }
 
 // Getting the max value
-const max = bst.max(); // 95
+const max = bst.max(); // 20
 
 // Getting the min value
 const min = bst.min(); // 2
