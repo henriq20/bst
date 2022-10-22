@@ -180,7 +180,11 @@ export class BST {
     isLeaf(value: number): boolean {
         const node = this.find(value);
 
-        return !node?.right && !node?.left;
+        if (!node) {
+            throw new Error(`The tree does not have a node with the value '${ value }'`);
+        }
+
+        return !node.right && !node.left;
     }
 
     /**

@@ -224,6 +224,12 @@ describe('isLeaf', () => {
         expect(bst.isLeaf(1)).toBe(true);
         expect(bst.isLeaf(14)).toBe(true);
     });
+
+    it('should throw an error when the specified node does not exist', () => {
+        const bst = new BST();
+
+        expect(() => bst.isLeaf(5)).toThrow();
+    });
 });
 
 describe('remove', () => {
