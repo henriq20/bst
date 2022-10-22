@@ -177,8 +177,8 @@ export class BST {
      *
      * @param value
      */
-    isLeaf(value: number): boolean {
-        const node = this.find(value);
+    isLeaf(value: number | Node): boolean {
+        const node = value instanceof Node ? value : this.find(value);
 
         if (!node) {
             throw new Error(`The tree does not have a node with the value '${ value }'`);

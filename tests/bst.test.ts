@@ -225,6 +225,18 @@ describe('isLeaf', () => {
         expect(bst.isLeaf(14)).toBe(true);
     });
 
+    it('should be able to pass a node instance', () => {
+        const bst = new BST();
+
+        const nodeOne = new Node(5);
+        const nodeTwo = new Node(10);
+
+        nodeTwo.left = new Node(1);
+
+        expect(bst.isLeaf(nodeOne)).toBe(true);
+        expect(bst.isLeaf(nodeTwo)).toBe(false);
+    });
+
     it('should throw an error when the specified node does not exist', () => {
         const bst = new BST();
 
